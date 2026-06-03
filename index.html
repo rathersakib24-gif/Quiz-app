@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>কুইজ - বাংলা কুইজ অ্যাপ</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Authentication Pages -->
+    <div id="authContainer" class="auth-container">
+        <!-- Login Page -->
+        <div id="loginPage" class="auth-page active">
+            <div class="auth-card">
+                <h1>কুইজ</h1>
+                <p class="auth-subtitle">স্বাগতম!</p>
+                
+                <form id="loginForm" onsubmit="handleLogin(event)">
+                    <div class="form-group">
+                        <label for="loginName">নাম:</label>
+                        <input type="text" id="loginName" placeholder="আপনার নাম" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="loginPassword">পাসওয়ার্ড (৪ অঙ্ক):</label>
+                        <input type="password" id="loginPassword" placeholder="****" maxlength="4" required>
+                    </div>
+                    
+                    <button type="submit" class="btn btn-primary btn-large">লগইন করুন</button>
+                </form>
+                
+                <p class="auth-switch">
+                    অ্যাকাউন্ট নেই? 
+                    <a href="#" onclick="switchPage('registerPage')">অ্যাকাউন্ট তৈরি করুন</a>
+                </p>
+            </div>
+        </div>
+
+        <!-- Register Page -->
+        <div id="registerPage" class="auth-page">
+            <div class="auth-card">
+                <h1>কুইজ</h1>
+                <p class="auth-subtitle">নতুন অ্যাকাউন্ট তৈরি করুন</p>
+                
+                <form id="registerForm" onsubmit="handleRegister(event)">
+                    <div class="form-group">
+                        <label for="registerName">নাম (৪-২০ অক্ষর):</label>
+                        <input type="text" id="registerName" placeholder="আপনার নাম" minlength="4" maxlength="20" required>
+                        <span class="error-message" id="nameError"></span>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="registerPassword">পাসওয়ার্ড (ঠিক ৪ অঙ্ক):</label>
+                        <input type="password" id="registerPassword" placeholder="****" maxlength="4" required>
+                        <span class="error-message" id="passwordError"></span>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="registerPasswordConfirm">পাসওয়ার্ড নিশ্চিত করুন:</label>
+                        <input type="password" id="registerPasswordConfirm" placeholder="****" maxlength="4" required>
+                        <span class="error-message" id="confirmError"></span>
+                    </div>
+                    
+                    <button type="submit" class="btn btn-primary btn-large">অ্যাকাউন্ট তৈরি করুন</button>
+                </form>
+                
+                <p class="auth-switch">
+                    ইতিমধ্যে অ্যাকাউন্ট আছে? 
+                    <a href="#" onclick="switchPage('loginPage')">লগইন করুন</a>
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main App Container -->
+    <div id="appContainer" class="app-container" style="display: none;">
+        <!-- Navigation Bar -->
+        <nav class="navbar">
+            <button class="btn-menu" onclick="toggleSidebar()">☰</button>
+            <h1 class="app-title">কুইজ</h1>
+            <div class="coin-display">
+                <span class="coin-icon">🪙</span>
+                <span id="coinBalance">0</span>
+            </div>
+        </nav>
+
+        <!-- Sidebar Menu -->
+        <div id="sidebar" class="sidebar">
+            <div class="sidebar-content">
+                <button class="btn-close" onclick="toggleSidebar()">✕</button>
+                <ul class="menu-list">
+                    <li><a href="#" onclick="showPage('myAccount')">👤 আমার অ্যাকাউন্ট</a></li>
+                    <li><a href="#" onclick="showPage('giftBox')">🎁 উপহার বাক্স</a></li>
+                    <li><a href="#" onclick="logout()">🚪 লগ আউট</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Pages Container -->
+        <main class="main-content">
+            <!-- Home Page -->
+            <div id="homePage" class="page active">
+                <div class="page-header">
+                    <h2>খেলাধুলা বিষয়ক কুইজ</h2>
+                </div>
+
+                <div class="overall-progress">
+                    <p class="progress-label">সামগ্রিক অগ্রগতি</p>
+                    <div class="progress-bar">
+                        <div id="overallProgressFill" class="progress-fill"></div>
+                    </div>
+                    <p id="overallPercentage" class="progress-percentage">0%</p>
+                </div>
+
+                <div class="categories-container">
+                    <!-- Football Category -->
+                    <div class="category-card">
+                        <h3>⚽ ফুটবল</h3>
+                        <div class="category-progress">
+                            <div class="progress-bar">
+                                <div id="footballProgressFill" class="progress-fill"></div>
+                            </div>
+                            <p id="footballPercentage" class="progress-percentage">0%</p>
+                        </div>
+
+                        <div class="units-container">
+                            <!-- Football Units -->
+                            <div id="footballUnits"></div>
+                        </div>
+                    </div>
+
+                    <!-- Cricket Category -->
+                    <div class="category-card">
+                        <h3>🏏 ক্রিকেট</h3>
+                        <p class="coming-soon">শীঘ্রই আসছে...</p>
+                    </div>
+
+                    <!-- Others Category -->
+                    <div class="category-card">
+                        <h3>⭐ অন্যান্য</h3>
+                        <p class="coming-soon">শীঘ্রই আসছে...</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- My Account Page -->
+            <div id="myAccount" class="page">
+                <div class="page-header">
+                    <button class="btn-back" onclick="showPage('homePage')">←</button>
+                    <h2>আমার অ্যাকাউন্ট</h2>
+                </div>
+
+                <div class="account-card">
+                    <div class="profile-section">
+                        <div class="profile-picture">👤</div>
+                        <h3 id="accountName">ব্যবহারকারী</h3>
+                    </div>
+
+                    <div class="account-details">
+                        <div class="detail-row">
+                            <span class="label">পাসওয়ার্ড:</span>
+                            <span class="value">****</span>
+                        </div>
+
+                        <div class="btn-group">
+                            <button class="btn btn-secondary" onclick="showChangeNameModal()">নাম পরিবর্তন করুন</button>
+                            <button class="btn btn-secondary" onclick="showChangePasswordModal()">পাসওয়ার্ড পরিবর্তন করুন</button>
+                        </div>
+
+                        <div class="account-stats">
+                            <div class="stat-item">
+                                <span class="stat-label">অ্যাকাউন্ট তৈরির তারিখ:</span>
+                                <span id="creationDate" class="stat-value">-</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="stat-label">মোট কুইজ খেলা:</span>
+                                <span id="totalQuizPlayed" class="stat-value">0</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Gift Box Page -->
+            <div id="giftBox" class="page">
+                <div class="page-header">
+                    <button class="btn-back" onclick="showPage('homePage')">←</button>
+                    <h2>উপহার বাক্স</h2>
+                </div>
+
+                <div class="gift-container">
+                    <p class="gift-instruction">বিশেষ কোড সংগ্রহ করে দিতে নিন অফিসিয়াল গিফ্টস!</p>
+
+                    <div class="gift-input-group">
+                        <input type="text" id="giftCode" placeholder="উপহার কোড লিখুন" class="gift-input">
+                        <button class="btn btn-primary" onclick="validateGiftCode()">যাচাই করুন</button>
+                    </div>
+
+                    <div id="giftResult" class="gift-result" style="display: none;">
+                        <div class="gift-reward">
+                            <span id="giftRewardText"></span>
+                            <button class="btn btn-success" onclick="collectGift()">সংগ্রহ করুন</button>
+                        </div>
+                    </div>
+
+                    <div class="gift-info">
+                        <p class="info-title">সক্রিয় কোডসমূহ:</p>
+                        <ul>
+                            <li><strong>CADET</strong> → 30 🪙</li>
+                            <li><strong>SCC</strong> → 20 🪙</li>
+                        </ul>
+                        <p class="info-note">⚠️ প্রতিটি কোড শুধুমাত্র একবার ব্যবহার করা যায়</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Quiz Page -->
+            <div id="quizPage" class="page">
+                <div class="quiz-header">
+                    <button class="btn-back" onclick="exitQuiz()">←</button>
+                    <div class="question-counter" id="questionCounter">1/5</div>
+                </div>
+
+                <div class="quiz-timer">
+                    <div class="timer-bar">
+                        <div id="timerFill" class="timer-fill"></div>
+                    </div>
+                    <span id="timerText">⏳ 13s</span>
+                </div>
+
+                <div class="quiz-content">
+                    <p id="questionText" class="question-text"></p>
+
+                    <div id="optionsContainer" class="options-container"></div>
+
+                    <div class="quiz-buttons">
+                        <button class="btn btn-secondary" onclick="skipQuestion()">এড়িয়ে যান</button>
+                        <button id="submitBtn" class="btn btn-primary" onclick="submitAnswer()" disabled>জমা দিন</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Result Page -->
+            <div id="resultPage" class="page">
+                <div class="result-container">
+                    <h2 class="result-title">ফলাফল</h2>
+
+                    <div class="score-circle">
+                        <span id="scorePercentage">0%</span>
+                    </div>
+
+                    <div class="result-stats">
+                        <div class="stat">
+                            <span class="stat-icon">✅</span>
+                            <div>
+                                <p class="stat-name">সঠিক উত্তর</p>
+                                <p id="correctCount" class="stat-value">0</p>
+                            </div>
+                        </div>
+
+                        <div class="stat">
+                            <span class="stat-icon">❌</span>
+                            <div>
+                                <p class="stat-name">ভুল উত্তর</p>
+                                <p id="wrongCount" class="stat-value">0</p>
+                            </div>
+                        </div>
+
+                        <div class="stat">
+                            <span class="stat-icon">⏭️</span>
+                            <div>
+                                <p class="stat-name">এড়িয়ে যাওয়া</p>
+                                <p id="skippedCount" class="stat-value">0</p>
+                            </div>
+                        </div>
+
+                        <div class="stat">
+                            <span class="stat-icon">⌛</span>
+                            <div>
+                                <p class="stat-name">সময় শেষ</p>
+                                <p id="timeoutCount" class="stat-value">0</p>
+                            </div>
+                        </div>
+
+                        <div class="stat">
+                            <span class="stat-icon">🪙</span>
+                            <div>
+                                <p class="stat-name">অর্জিত কয়েন</p>
+                                <p id="earnedCoins" class="stat-value">0</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="result-buttons">
+                        <button class="btn btn-secondary" onclick="returnToHome()">বাড়ি</button>
+                        <button id="playAgainBtn" class="btn btn-primary" style="display: none;" onclick="playAgain()">আবার খেলুন</button>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Modals -->
+    <!-- Change Name Modal -->
+    <div id="changeNameModal" class="modal">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeModal('changeNameModal')">✕</button>
+            <h3>নাম পরিবর্তন করুন</h3>
+            <input type="text" id="newNameInput" placeholder="নতুন নাম (৪-২০ অক্ষর)" minlength="4" maxlength="20" class="modal-input">
+            <div class="modal-buttons">
+                <button class="btn btn-secondary" onclick="closeModal('changeNameModal')">বাতিল</button>
+                <button class="btn btn-primary" onclick="saveName()">সংরক্ষণ করুন</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Change Password Modal -->
+    <div id="changePasswordModal" class="modal">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeModal('changePasswordModal')">✕</button>
+            <h3>পাসওয়ার্ড পরিবর্তন করুন</h3>
+            <input type="password" id="currentPassword" placeholder="বর্তমান পাসওয়ার্ড" maxlength="4" class="modal-input">
+            <input type="password" id="newPassword" placeholder="নতুন পাসওয়ার্ড (৪ অঙ্ক)" maxlength="4" class="modal-input">
+            <input type="password" id="confirmPassword" placeholder="পাসওয়ার্ড নিশ্চিত করুন" maxlength="4" class="modal-input">
+            <span class="error-message" id="passwordChangeError"></span>
+            <div class="modal-buttons">
+                <button class="btn btn-secondary" onclick="closeModal('changePasswordModal')">বাতিল</button>
+                <button class="btn btn-primary" onclick="savePassword()">সংরক্ষণ করুন</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Quiz Rules Modal -->
+    <div id="quizRulesModal" class="modal">
+        <div class="modal-content">
+            <h3>কুইজ নিয়মকানুন</h3>
+            <div class="rules-content">
+                <div class="rule-item">
+                    <span class="rule-label">মোট প্রশ্ন:</span>
+                    <span class="rule-value" id="rulesQuestions">5</span>
+                </div>
+                <div class="rule-item">
+                    <span class="rule-label">সঠিক উত্তর:</span>
+                    <span class="rule-value">+4 🪙</span>
+                </div>
+                <div class="rule-item">
+                    <span class="rule-label">ভুল উত্তর:</span>
+                    <span class="rule-value">-1 🪙</span>
+                </div>
+                <div class="rule-item">
+                    <span class="rule-label">প্রতি প্রশ্নে সময়:</span>
+                    <span class="rule-value">13 সেকেন্ড</span>
+                </div>
+                <div class="rule-item">
+                    <span class="rule-label">মোট সময়:</span>
+                    <span class="rule-value">65 সেকেন্ড</span>
+                </div>
+                <div class="rule-item">
+                    <span class="rule-label">প্রবেশ ফি:</span>
+                    <span class="rule-value" id="rulesEntryFee">5 🪙</span>
+                </div>
+            </div>
+            <div class="modal-buttons">
+                <button class="btn btn-secondary" onclick="closeModal('quizRulesModal')">বাতিল</button>
+                <button class="btn btn-primary" onclick="startQuiz()">কুইজ শুরু করুন</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Alert Modal -->
+    <div id="alertModal" class="modal">
+        <div class="modal-content modal-alert">
+            <p id="alertMessage"></p>
+            <button class="btn btn-primary" onclick="closeModal('alertModal')">ঠিক আছে</button>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
