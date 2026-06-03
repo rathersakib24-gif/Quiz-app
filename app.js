@@ -2,6 +2,26 @@
    কুইজ অ্যাপ - মূল জাভাস্ক্রিপ্ট লজিক
    ============================================= */
 
+// Helper function to convert Bengali/Devanagari numbers to English
+function convertToEnglishNumbers(text) {
+    if (!text) return text;
+    const bengaliDigits = ['০', '১', '২', '३', '४', '५', '६', '७', '८', '९'];
+    const devanagariDigits = ['०', '१', '२', '३', '४', '५', '६', '७', '८', '९'];
+    const englishDigits = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'];
+    
+    let result = text.toString();
+    
+    bengaliDigits.forEach((digit, index) => {
+        result = result.replace(new RegExp(digit, 'g'), englishDigits[index]);
+    });
+    
+    devanagariDigits.forEach((digit, index) => {
+        result = result.replace(new RegExp(digit, 'g'), englishDigits[index]);
+    });
+    
+    return result;
+}
+
 // ===== Data Structure =====
 const GIFT_CODES = {
     'CADET': 30,
@@ -16,7 +36,7 @@ const QUIZ_DATA = {
                 set: 1,
                 questions: [
                     {
-                        question: '১. ফুটবল খেলার উৎপত্তি কোন দেশে ?',
+                        question: '1. ফুটবল খেলার উৎপত্তি কোন দেশে ?',
                         type: 'mcq',
                         options: [
                             'ক. যুক্তরাষ্ট্র',
@@ -27,18 +47,18 @@ const QUIZ_DATA = {
                         correctAnswer: 3
                     },
                     {
-                        question: '२. ফিফা বিশ্বকাপ ২০२२ এ কয়টি দল অংশগ্রহণ করেছিল ?',
+                        question: '2. ফিফা বিশ্বকাপ 2022 এ কয়টি দল অংশগ্রহণ করেছিল ?',
                         type: 'mcq',
                         options: [
-                            'ক. ४६ টি',
-                            'খ. २४ টি',
-                            'গ. ३२ টি',
-                            'ঘ. २८ টি'
+                            'ক. 46 টি',
+                            'খ. 24 টি',
+                            'গ. 32 টি',
+                            'ঘ. 28 টি'
                         ],
                         correctAnswer: 2
                     },
                     {
-                        question: '३. লা লিগা কোন দেশের শীর্ষ ফুটবল লিগ ?',
+                        question: '3. লা লিগা কোন দেশের শীর্ষ ফুটবল লিগ ?',
                         type: 'mcq',
                         options: [
                             'ক. যুক্তরাষ্ট্র',
@@ -49,18 +69,18 @@ const QUIZ_DATA = {
                         correctAnswer: 2
                     },
                     {
-                        question: '४. १ম ফিফা বিশ্বকাপ কবে অনুষ্ঠিত হয় ?',
+                        question: '4. প্রথম ফিফা বিশ্বকাপ কবে অনুষ্ঠিত হয় ?',
                         type: 'mcq',
                         options: [
-                            'ক. १९३० সালে',
-                            'খ. १९१६ সালে',
-                            'গ. १९५२ সালে',
+                            'ক. 1930 সালে',
+                            'খ. 1916 সালে',
+                            'গ. 1952 সালে',
                             'ঘ. একটিও নয়'
                         ],
                         correctAnswer: 0
                     },
                     {
-                        question: '५. কোপা আমেরিকায় সর্বাধিক বার চ্যাম্পিয়ন হয়েছে কোন দল ?',
+                        question: '5. কোপা আমেরিকায় সর্বাধিক বার চ্যাম্পিয়ন হয়েছে কোন দল ?',
                         type: 'mcq',
                         options: [
                             'ক. আর্জেন্টিনা',
@@ -77,7 +97,7 @@ const QUIZ_DATA = {
                 set: 2,
                 questions: [
                     {
-                        question: '१. ফুটবলে হলুদ কার্ড কি নির্দেশ করে ?',
+                        question: '1. ফুটবলে হলুদ কার্ড কি নির্দেশ করে ?',
                         type: 'mcq',
                         options: [
                             'ক. মাঠ থেকে বহিষ্কার',
@@ -88,7 +108,7 @@ const QUIZ_DATA = {
                         correctAnswer: 1
                     },
                     {
-                        question: '२. ফুটবলের সর্বোচ্চ নিয়ন্ত্রক সংস্থা কোনটি ?',
+                        question: '2. ফুটবলের সর্বোচ্চ নিয়ন্ত্রক সংস্থা কোনটি ?',
                         type: 'mcq',
                         options: [
                             'ক. BAFA',
@@ -99,7 +119,7 @@ const QUIZ_DATA = {
                         correctAnswer: 2
                     },
                     {
-                        question: '३. ফিফা বিশ্বকাপ २०१८ এ চ্যাম্পিয়ন হয়েছে কোন দল ?',
+                        question: '3. ফিফা বিশ্বকাপ 2018 এ চ্যাম্পিয়ন হয়েছে কোন দল ?',
                         type: 'mcq',
                         options: [
                             'ক. ফ্রান্স',
@@ -110,7 +130,7 @@ const QUIZ_DATA = {
                         correctAnswer: 0
                     },
                     {
-                        question: '४. ফিফা বিশ্বকাপ २०२२ এ ३য় স্থান লাভ করেছে কোন দল ?',
+                        question: '4. ফিফা বিশ্বকাপ 2022 এ 3য় স্থান লাভ করেছে কোন দল ?',
                         type: 'mcq',
                         options: [
                             'ক. সৌদি আরব',
@@ -121,13 +141,13 @@ const QUIZ_DATA = {
                         correctAnswer: 3
                     },
                     {
-                        question: '५. ফিফা বিশ্বকাপ २०२६ এ কয়টি দল অংশগ্রহণ করবে ?',
+                        question: '5. ফিফা বিশ্বকাপ 2026 এ কয়টি দল অংশগ্রহণ করবে ?',
                         type: 'mcq',
                         options: [
-                            'ক. ४८ টি',
-                            'খ. ४६ টি',
-                            'গ. ३५ টি',
-                            'ঘ. ३२ টি'
+                            'ক. 48 টি',
+                            'খ. 46 টি',
+                            'গ. 35 টি',
+                            'ঘ. 32 টি'
                         ],
                         correctAnswer: 0
                     }
@@ -138,27 +158,27 @@ const QUIZ_DATA = {
                 set: 3,
                 questions: [
                     {
-                        question: '१. ব্রাজিল কয়বার কোপা আমেরিকা জিতেছে ?',
+                        question: '1. ব্রাজিল কয়বার কোপা আমেরিকা জিতেছে ?',
                         type: 'text',
-                        correctAnswer: '९ বার'
+                        correctAnswer: '9 বার'
                     },
                     {
-                        question: '२. বুন্দেসলিগা কোন দেশের ফুটবল লিগ ?',
+                        question: '2. বুন্দেসলিগা কোন দেশের ফুটবল লিগ ?',
                         type: 'text',
                         correctAnswer: 'জার্মানি'
                     },
                     {
-                        question: '३. কোপা আমেরিকায় সর্বাধিক বার চ্যাম্পিয়ন হয়েছে কোন দল ?',
+                        question: '3. কোপা আমেরিকায় সর্বাধিক বার চ্যাম্পিয়ন হয়েছে কোন দল ?',
                         type: 'text',
                         correctAnswer: 'আর্জেন্টিনা'
                     },
                     {
-                        question: '४. ফুটবল মাঠের মাঝের বৃত্তকে কি বলে ?',
+                        question: '4. ফুটবল মাঠের মাঝের বৃত্তকে কি বলে ?',
                         type: 'text',
                         correctAnswer: 'সেন্টার সার্কেল'
                     },
                     {
-                        question: '५. BFF এর পূর্ণরূপ কোনটি?',
+                        question: '5. BFF এর পূর্ণরূপ কোনটি?',
                         type: 'text',
                         correctAnswer: 'Bangladesh Football Federation'
                     }
@@ -169,27 +189,27 @@ const QUIZ_DATA = {
                 set: 4,
                 questions: [
                     {
-                        question: '१. ফিফা বিশ্বকাপ २०२२ এর সেরা খেলোয়াড় কে?',
+                        question: '1. ফিফা বিশ্বকাপ 2022 এর সেরা খেলোয়াড় কে?',
                         type: 'text',
                         correctAnswer: 'লিওনেল মেসি'
                     },
                     {
-                        question: '२. ফিফা বিশ্বকাপ २०२६ কোথায় অনুষ্ঠিত হবে?',
+                        question: '2. ফিফা বিশ্বকাপ 2026 কোথায় অনুষ্ঠিত হবে?',
                         type: 'text',
                         correctAnswer: 'যুক্তরাষ্ট্র, কানাডা, মেক্সিকো'
                     },
                     {
-                        question: '३. १ম ফিফা বিশ্বকাপ কোথায় অনুষ্ঠিত হয়?',
+                        question: '3. প্রথম ফিফা বিশ্বকাপ কোথায় অনুষ্ঠিত হয়?',
                         type: 'text',
                         correctAnswer: 'উরুগুয়ে'
                     },
                     {
-                        question: '४. ফিফা বিশ্বকাপ কত বছর পর পর অনুষ্ঠিত হয়?',
+                        question: '4. ফিফা বিশ্বকাপ কত বছর পর পর অনুষ্ঠিত হয়?',
                         type: 'text',
-                        correctAnswer: '४ বছর পর পর'
+                        correctAnswer: '4 বছর পর পর'
                     },
                     {
-                        question: '५. ফিফা বিশ্বকাপে সর্বাধিকবার শিরোপা জিতেছে কোন দেশ?',
+                        question: '5. ফিফা বিশ্বকাপে সর্বাধিকবার শিরোপা জিতেছে কোন দেশ?',
                         type: 'text',
                         correctAnswer: 'ব্রাজিল'
                     }
@@ -200,29 +220,29 @@ const QUIZ_DATA = {
                 set: 5,
                 questions: [
                     {
-                        question: '१. ফিফা বিশ্বকাপে আর্জেন্টিনা কতবার চ্যাম্পিয়ন হয়েছে?',
+                        question: '1. ফিফা বিশ্বকাপে আর্জেন্টিনা কতবার চ্যাম্পিয়ন হয়েছে?',
                         type: 'text',
-                        correctAnswer: '४ বার'
+                        correctAnswer: '4 বার'
                     },
                     {
-                        question: '२. ব্রাজিল সর্বশেষ বিশ্বকাপ জিতেছে কত সালে?',
+                        question: '2. ব্রাজিল সর্বশেষ বিশ্বকাপ জিতেছে কত সালে?',
                         type: 'text',
-                        correctAnswer: '२००२ সালে'
+                        correctAnswer: '2002 সালে'
                     },
                     {
-                        question: '३. বিশ্বকাপে গোল্ডেন বুট পুরস্কারটি কাকে দেওয়া হয়?',
+                        question: '3. বিশ্বকাপে গোল্ডেন বুট পুরস্কারটি কাকে দেওয়া হয়?',
                         type: 'text',
                         correctAnswer: 'সর্বাধিক গোলদাতা'
                     },
                     {
-                        question: '४. ফিফা বিশ্বকাপে ফ্রান্স কতবার চ্যাম্পিয়ন হয়েছে?',
+                        question: '4. ফিফা বিশ্বকাপে ফ্রান্স কতবার চ্যাম্পিয়ন হয়েছে?',
                         type: 'text',
-                        correctAnswer: '२ বার'
+                        correctAnswer: '2 বার'
                     },
                     {
-                        question: '५. ফুটবল ম্যাচে মাঠে কতজন রেফারি থাকে?',
+                        question: '5. ফুটবল ম্যাচে মাঠে কতজন রেফারি থাকে?',
                         type: 'text',
-                        correctAnswer: '३ জন'
+                        correctAnswer: '3 জন'
                     }
                 ]
             }
@@ -274,7 +294,7 @@ function handleLogin(event) {
     }
 
     if (password.length !== 4 || isNaN(password)) {
-        showAlert('পাসওয়ার্ড ঠিক ৪টি অঙ্ক হতে হবে!');
+        showAlert('পাসওয়ার্ড ঠিক 4 টি অঙ্ক হতে হবে!');
         return;
     }
 
@@ -302,15 +322,14 @@ function handleRegister(event) {
     const password = document.getElementById('registerPassword').value;
     const passwordConfirm = document.getElementById('registerPasswordConfirm').value;
 
-    // Validation
     if (name.length < 4 || name.length > 20) {
-        document.getElementById('nameError').textContent = 'নাম ৪-২০ অক্ষরের মধ্যে হতে হবে!';
+        document.getElementById('nameError').textContent = 'নাম 4-20 অক্ষরের মধ্যে হতে হবে!';
         return;
     }
     document.getElementById('nameError').textContent = '';
 
     if (password.length !== 4 || isNaN(password)) {
-        document.getElementById('passwordError').textContent = 'পাসওয়ার্ড ঠিক ৪টি অঙ্ক হতে হবে!';
+        document.getElementById('passwordError').textContent = 'পাসওয়ার্ড ঠিক 4 টি অঙ্ক হতে হবে!';
         return;
     }
     document.getElementById('passwordError').textContent = '';
@@ -381,7 +400,7 @@ function saveUserData() {
 }
 
 function updateCoinDisplay() {
-    document.getElementById('coinBalance').textContent = currentUser.coins;
+    document.getElementById('coinBalance').textContent = convertToEnglishNumbers(currentUser.coins);
 }
 
 // ===== Page Navigation =====
@@ -411,6 +430,12 @@ function toggleSidebar() {
     document.body.classList.toggle('sidebar-open');
 }
 
+function closeSidebar() {
+    const sidebar = document.getElementById('sidebar');
+    sidebar.classList.remove('active');
+    document.body.classList.remove('sidebar-open');
+}
+
 // ===== Home Page =====
 function loadHomePage() {
     showPage('homePage');
@@ -428,11 +453,10 @@ function updateOverallProgress() {
 
     const percentage = Math.round((completedSets / totalSets) * 100);
     document.getElementById('overallProgressFill').style.width = percentage + '%';
-    document.getElementById('overallPercentage').textContent = percentage + '%';
+    document.getElementById('overallPercentage').textContent = convertToEnglishNumbers(percentage) + '%';
 
-    // Football category progress
     document.getElementById('footballProgressFill').style.width = percentage + '%';
-    document.getElementById('footballPercentage').textContent = percentage + '%';
+    document.getElementById('footballPercentage').textContent = convertToEnglishNumbers(percentage) + '%';
 }
 
 function loadFootballUnits() {
@@ -447,10 +471,10 @@ function loadFootballUnits() {
         const unitCard = document.createElement('div');
         unitCard.className = 'unit-card' + (isCompleted ? ' completed' : '');
         unitCard.innerHTML = `
-            <h4>ফুটবল সেট ০${i + 1}</h4>
+            <h4>ফুটবল সেট 0${i + 1}</h4>
             <div class="unit-info">
                 <span class="entry-fee">প্রবেশ ফি: 5 🪙</span>
-                <span class="unit-status">${completionPercent}%</span>
+                <span class="unit-status">${convertToEnglishNumbers(completionPercent)}%</span>
             </div>
             <div class="unit-progress">
                 <div class="progress-bar">
@@ -470,11 +494,10 @@ function startQuizSet(setIndex, isPlayAgain = false) {
     const entryFee = 5;
 
     if (!isPlayAgain && currentUser.coins < entryFee) {
-        showAlert('কয়েন অপর্যাপ্ত! আপনার কাছে ' + currentUser.coins + ' 🪙 আছে।');
+        showAlert('কয়েন অপর্যাপ্ত! আপনার কাছে ' + convertToEnglishNumbers(currentUser.coins) + ' 🪙 আছে।');
         return;
     }
 
-    // Show quiz rules modal
     isPlayAgainMode = isPlayAgain;
     currentQuiz = {
         setIndex: setIndex,
@@ -482,8 +505,8 @@ function startQuizSet(setIndex, isPlayAgain = false) {
         entryFee: isPlayAgain ? 0 : entryFee
     };
 
-    document.getElementById('rulesQuestions').textContent = currentQuiz.questions.length;
-    document.getElementById('rulesEntryFee').textContent = (isPlayAgain ? 0 : entryFee) + ' 🪙';
+    document.getElementById('rulesQuestions').textContent = convertToEnglishNumbers(currentQuiz.questions.length);
+    document.getElementById('rulesEntryFee').textContent = convertToEnglishNumbers(isPlayAgain ? 0 : entryFee) + ' 🪙';
 
     openModal('quizRulesModal');
 }
@@ -491,7 +514,6 @@ function startQuizSet(setIndex, isPlayAgain = false) {
 function startQuiz() {
     closeModal('quizRulesModal');
     
-    // Deduct entry fee if not play again
     if (!isPlayAgainMode) {
         currentUser.coins -= currentQuiz.entryFee;
         saveUserData();
@@ -502,7 +524,6 @@ function startQuiz() {
     selectedAnswer = null;
     quizStarted = true;
     
-    // Reset results
     quizResults = {
         correct: 0,
         wrong: 0,
@@ -519,18 +540,14 @@ function startQuiz() {
 function loadQuestion() {
     const question = currentQuiz.questions[currentQuestionIndex];
     
-    // Update question counter
     document.getElementById('questionCounter').textContent = 
-        (currentQuestionIndex + 1) + '/' + currentQuiz.questions.length;
+        convertToEnglishNumbers((currentQuestionIndex + 1) + '/' + currentQuiz.questions.length);
 
-    // Update question text
     document.getElementById('questionText').textContent = question.question;
 
-    // Clear selected answer
     selectedAnswer = null;
     document.getElementById('submitBtn').disabled = true;
 
-    // Load options
     const optionsContainer = document.getElementById('optionsContainer');
     optionsContainer.innerHTML = '';
 
@@ -591,7 +608,7 @@ function resetTimer() {
 function updateTimerDisplay() {
     const percentage = (timeLeft / 13) * 100;
     document.getElementById('timerFill').style.width = percentage + '%';
-    document.getElementById('timerText').textContent = '⏳ ' + timeLeft + 's';
+    document.getElementById('timerText').textContent = '⏳ ' + convertToEnglishNumbers(timeLeft) + 's';
 
     if (timeLeft <= 3) {
         document.getElementById('timerFill').style.background = 
@@ -675,12 +692,10 @@ function endQuiz() {
     clearInterval(timerInterval);
     quizStarted = false;
 
-    // Apply coin changes only in normal mode
     if (!isPlayAgainMode) {
         currentUser.coins += quizResults.coinEarned;
         if (currentUser.coins < 0) currentUser.coins = 0;
         
-        // Mark quiz as completed
         currentUser.quizProgress.sports.football.completed[currentQuiz.setIndex] = true;
     }
 
@@ -707,14 +722,18 @@ function showResultPage() {
     const totalQuestions = currentQuiz.questions.length;
     const percentage = Math.round((quizResults.correct / totalQuestions) * 100);
 
-    document.getElementById('scorePercentage').textContent = percentage + '%';
-    document.getElementById('correctCount').textContent = quizResults.correct;
-    document.getElementById('wrongCount').textContent = quizResults.wrong;
-    document.getElementById('skippedCount').textContent = quizResults.skipped;
-    document.getElementById('timeoutCount').textContent = quizResults.timeout;
-    document.getElementById('earnedCoins').textContent = quizResults.coinEarned + ' 🪙';
+    document.getElementById('scorePercentage').textContent = convertToEnglishNumbers(percentage) + '%';
+    document.getElementById('correctCount').textContent = convertToEnglishNumbers(quizResults.correct);
+    document.getElementById('wrongCount').textContent = convertToEnglishNumbers(quizResults.wrong);
+    document.getElementById('skippedCount').textContent = convertToEnglishNumbers(quizResults.skipped);
+    document.getElementById('timeoutCount').textContent = convertToEnglishNumbers(quizResults.timeout);
+    
+    let earnedText = convertToEnglishNumbers(quizResults.coinEarned) + ' 🪙';
+    if (isPlayAgainMode) {
+        earnedText = '<span class="practice-mode-badge">PRACTICE MODE</span><br>0 🪙';
+    }
+    document.getElementById('earnedCoins').innerHTML = earnedText;
 
-    // Show play again button
     document.getElementById('playAgainBtn').style.display = 'inline-block';
 }
 
@@ -732,8 +751,8 @@ function loadAccountPage() {
     const dateStr = createdDate.toLocaleDateString('bn-BD');
 
     document.getElementById('accountName').textContent = currentUser.name;
-    document.getElementById('creationDate').textContent = dateStr;
-    document.getElementById('totalQuizPlayed').textContent = currentUser.totalQuizPlayed;
+    document.getElementById('creationDate').textContent = convertToEnglishNumbers(dateStr);
+    document.getElementById('totalQuizPlayed').textContent = convertToEnglishNumbers(currentUser.totalQuizPlayed);
 }
 
 function showChangeNameModal() {
@@ -753,7 +772,7 @@ function saveName() {
     const newName = document.getElementById('newNameInput').value.trim();
 
     if (newName.length < 4 || newName.length > 20) {
-        showAlert('নাম ৪-२० অক্ষরের মধ্যে হতে হবে!');
+        showAlert('নাম 4-20 অক্ষরের মধ্যে হতে হবে!');
         return;
     }
 
@@ -763,7 +782,6 @@ function saveName() {
         return;
     }
 
-    // Update user data
     users[newName] = currentUser;
     delete users[currentUser.name];
     localStorage.setItem('quizUsers', JSON.stringify(users));
@@ -789,7 +807,7 @@ function savePassword() {
     }
 
     if (newPassword.length !== 4 || isNaN(newPassword)) {
-        errorEl.textContent = 'নতুন পাসওয়ার্ড ঠিক ४ অঙ্ক হতে হবে!';
+        errorEl.textContent = 'নতুন পাসওয়ার্ড ঠিক 4 টি অঙ্ক হতে হবে!';
         return;
     }
 
@@ -829,7 +847,7 @@ function validateGiftCode() {
     }
 
     const reward = GIFT_CODES[code];
-    document.getElementById('giftRewardText').textContent = reward + ' 🪙';
+    document.getElementById('giftRewardText').textContent = convertToEnglishNumbers(reward) + ' 🪙';
     resultDiv.style.display = 'flex';
     resultDiv.dataset.code = code;
     resultDiv.dataset.reward = reward;
@@ -844,7 +862,7 @@ function collectGift() {
     currentUser.usedGiftCodes.push(code);
     saveUserData();
 
-    showAlert(reward + ' 🪙 যোগ করা হয়েছে!');
+    showAlert(convertToEnglishNumbers(reward) + ' 🪙 যোগ করা হয়েছে!');
     document.getElementById('giftCode').value = '';
     resultDiv.style.display = 'none';
 }
@@ -876,6 +894,16 @@ function logout() {
         switchPage('loginPage');
     }
 }
+
+// ===== Menu Item Click Handler (Close Sidebar) =====
+document.addEventListener('DOMContentLoaded', () => {
+    const menuItems = document.querySelectorAll('.menu-list a');
+    menuItems.forEach(item => {
+        item.addEventListener('click', () => {
+            closeSidebar();
+        });
+    });
+});
 
 // ===== Utility Functions =====
 document.addEventListener('click', (e) => {
