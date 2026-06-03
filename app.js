@@ -4,8 +4,8 @@
 
 // Helper function to convert Bengali/Devanagari numbers to English
 function convertToEnglishNumbers(text) {
-    if (!text) return text;
-    const bengaliDigits = ['০', '১', '২', '३', '४', '५', '६', '७', '८', '९'];
+    if (!text && text !== 0) return text;
+    const bengaliDigits = ['০', '১', '२', '३', '४', '५', '६', '७', '८', '९'];
     const devanagariDigits = ['०', '१', '२', '३', '४', '५', '६', '७', '८', '९'];
     const englishDigits = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'];
     
@@ -24,229 +24,233 @@ function convertToEnglishNumbers(text) {
 
 // ===== Data Structure =====
 const GIFT_CODES = {
-    'CADET': 30,
+    'CADET': 50,
     'SCC': 20
 };
 
 const QUIZ_DATA = {
     sports: {
-        football: [
-            {
-                id: 1,
-                set: 1,
-                questions: [
-                    {
-                        question: '1. ফুটবল খেলার উৎপত্তি কোন দেশে ?',
-                        type: 'mcq',
-                        options: [
-                            'ক. যুক্তরাষ্ট্র',
-                            'খ. ব্রাজিল',
-                            'গ. উরুগুয়ে',
-                            'ঘ. ইংল্যান্ড'
-                        ],
-                        correctAnswer: 3
-                    },
-                    {
-                        question: '2. ফিফা বিশ্বকাপ 2022 এ কয়টি দল অংশগ্রহণ করেছিল ?',
-                        type: 'mcq',
-                        options: [
-                            'ক. 46 টি',
-                            'খ. 24 টি',
-                            'গ. 32 টি',
-                            'ঘ. 28 টি'
-                        ],
-                        correctAnswer: 2
-                    },
-                    {
-                        question: '3. লা লিগা কোন দেশের শীর্ষ ফুটবল লিগ ?',
-                        type: 'mcq',
-                        options: [
-                            'ক. যুক্তরাষ্ট্র',
-                            'খ. জার্মানি',
-                            'গ. স্পেন',
-                            'ঘ. ইংল্যান্ড'
-                        ],
-                        correctAnswer: 2
-                    },
-                    {
-                        question: '4. প্রথম ফিফা বিশ্বকাপ কবে অনুষ্ঠিত হয় ?',
-                        type: 'mcq',
-                        options: [
-                            'ক. 1930 সালে',
-                            'খ. 1916 সালে',
-                            'গ. 1952 সালে',
-                            'ঘ. একটিও নয়'
-                        ],
-                        correctAnswer: 0
-                    },
-                    {
-                        question: '5. কোপা আমেরিকায় সর্বাধিক বার চ্যাম্পিয়ন হয়েছে কোন দল ?',
-                        type: 'mcq',
-                        options: [
-                            'ক. আর্জেন্টিনা',
-                            'খ. ব্রাজিল',
-                            'গ. উরুগুয়ে',
-                            'ঘ. ফ্রান্স'
-                        ],
-                        correctAnswer: 0
-                    }
-                ]
-            },
-            {
-                id: 2,
-                set: 2,
-                questions: [
-                    {
-                        question: '1. ফুটবলে হলুদ কার্ড কি নির্দেশ করে ?',
-                        type: 'mcq',
-                        options: [
-                            'ক. মাঠ থেকে বহিষ্কার',
-                            'খ. সতর্কবার্তা',
-                            'গ. জরিমানা',
-                            'ঘ. বিপদ সংকেত'
-                        ],
-                        correctAnswer: 1
-                    },
-                    {
-                        question: '2. ফুটবলের সর্বোচ্চ নিয়ন্ত্রক সংস্থা কোনটি ?',
-                        type: 'mcq',
-                        options: [
-                            'ক. BAFA',
-                            'খ. BFF',
-                            'গ. FIFA',
-                            'ঘ. ICB'
-                        ],
-                        correctAnswer: 2
-                    },
-                    {
-                        question: '3. ফিফা বিশ্বকাপ 2018 এ চ্যাম্পিয়ন হয়েছে কোন দল ?',
-                        type: 'mcq',
-                        options: [
-                            'ক. ফ্রান্স',
-                            'খ. আর্জেন্টিনা',
-                            'গ. জার্মানি',
-                            'ঘ. উরুগুয়ে'
-                        ],
-                        correctAnswer: 0
-                    },
-                    {
-                        question: '4. ফিফা বিশ্বকাপ 2022 এ 3য় স্থান লাভ করেছে কোন দল ?',
-                        type: 'mcq',
-                        options: [
-                            'ক. সৌদি আরব',
-                            'খ. আর্জেন্টিনা',
-                            'গ. ফ্রান্স',
-                            'ঘ. ক্রোয়েশিয়া'
-                        ],
-                        correctAnswer: 3
-                    },
-                    {
-                        question: '5. ফিফা বিশ্বকাপ 2026 এ কয়টি দল অংশগ্রহণ করবে ?',
-                        type: 'mcq',
-                        options: [
-                            'ক. 48 টি',
-                            'খ. 46 টি',
-                            'গ. 35 টি',
-                            'ঘ. 32 টি'
-                        ],
-                        correctAnswer: 0
-                    }
-                ]
-            },
-            {
-                id: 3,
-                set: 3,
-                questions: [
-                    {
-                        question: '1. ব্রাজিল কয়বার কোপা আমেরিকা জিতেছে ?',
-                        type: 'text',
-                        correctAnswer: '9 বার'
-                    },
-                    {
-                        question: '2. বুন্দেসলিগা কোন দেশের ফুটবল লিগ ?',
-                        type: 'text',
-                        correctAnswer: 'জার্মানি'
-                    },
-                    {
-                        question: '3. কোপা আমেরিকায় সর্বাধিক বার চ্যাম্পিয়ন হয়েছে কোন দল ?',
-                        type: 'text',
-                        correctAnswer: 'আর্জেন্টিনা'
-                    },
-                    {
-                        question: '4. ফুটবল মাঠের মাঝের বৃত্তকে কি বলে ?',
-                        type: 'text',
-                        correctAnswer: 'সেন্টার সার্কেল'
-                    },
-                    {
-                        question: '5. BFF এর পূর্ণরূপ কোনটি?',
-                        type: 'text',
-                        correctAnswer: 'Bangladesh Football Federation'
-                    }
-                ]
-            },
-            {
-                id: 4,
-                set: 4,
-                questions: [
-                    {
-                        question: '1. ফিফা বিশ্বকাপ 2022 এর সেরা খেলোয়াড় কে?',
-                        type: 'text',
-                        correctAnswer: 'লিওনেল মেসি'
-                    },
-                    {
-                        question: '2. ফিফা বিশ্বকাপ 2026 কোথায় অনুষ্ঠিত হবে?',
-                        type: 'text',
-                        correctAnswer: 'যুক্তরাষ্ট্র, কানাডা, মেক্সিকো'
-                    },
-                    {
-                        question: '3. প্রথম ফিফা বিশ্বকাপ কোথায় অনুষ্ঠিত হয়?',
-                        type: 'text',
-                        correctAnswer: 'উরুগুয়ে'
-                    },
-                    {
-                        question: '4. ফিফা বিশ্বকাপ কত বছর পর পর অনুষ্ঠিত হয়?',
-                        type: 'text',
-                        correctAnswer: '4 বছর পর পর'
-                    },
-                    {
-                        question: '5. ফিফা বিশ্বকাপে সর্বাধিকবার শিরোপা জিতেছে কোন দেশ?',
-                        type: 'text',
-                        correctAnswer: 'ব্রাজিল'
-                    }
-                ]
-            },
-            {
-                id: 5,
-                set: 5,
-                questions: [
-                    {
-                        question: '1. ফিফা বিশ্বকাপে আর্জেন্টিনা কতবার চ্যাম্পিয়ন হয়েছে?',
-                        type: 'text',
-                        correctAnswer: '4 বার'
-                    },
-                    {
-                        question: '2. ব্রাজিল সর্বশেষ বিশ্বকাপ জিতেছে কত সালে?',
-                        type: 'text',
-                        correctAnswer: '2002 সালে'
-                    },
-                    {
-                        question: '3. বিশ্বকাপে গোল্ডেন বুট পুরস্কারটি কাকে দেওয়া হয়?',
-                        type: 'text',
-                        correctAnswer: 'সর্বাধিক গোলদাতা'
-                    },
-                    {
-                        question: '4. ফিফা বিশ্বকাপে ফ্রান্স কতবার চ্যাম্পিয়ন হয়েছে?',
-                        type: 'text',
-                        correctAnswer: '2 বার'
-                    },
-                    {
-                        question: '5. ফুটবল ম্যাচে মাঠে কতজন রেফারি থাকে?',
-                        type: 'text',
-                        correctAnswer: '3 জন'
-                    }
-                ]
-            }
-        ]
+        name: 'খেলাধুলা বিষয়ক কুইজ',
+        football: {
+            name: 'ফুটবল',
+            questions: [
+                {
+                    id: 1,
+                    set: 1,
+                    questions: [
+                        {
+                            question: '1. ফুটবল খেলার উৎপত্তি কোন দেশে ?',
+                            type: 'mcq',
+                            options: [
+                                'ক. যুক্তরাষ্ট্র',
+                                'খ. ব্রাজিল',
+                                'গ. উরুগুয়ে',
+                                'ঘ. ইংল্যান্ড'
+                            ],
+                            correctAnswer: 3
+                        },
+                        {
+                            question: '2. ফিফা বিশ্বকাপ 2022 এ কয়টি দল অংশগ্রহণ করেছিল ?',
+                            type: 'mcq',
+                            options: [
+                                'ক. 46 টি',
+                                'খ. 24 টি',
+                                'গ. 32 টি',
+                                'ঘ. 28 টি'
+                            ],
+                            correctAnswer: 2
+                        },
+                        {
+                            question: '3. লা লিগা কোন দেশের শীর্ষ ফুটবল লিগ ?',
+                            type: 'mcq',
+                            options: [
+                                'ক. যুক্তরাষ্ট্র',
+                                'খ. জার্মানি',
+                                'গ. স্পেন',
+                                'ঘ. ইংল্যান্ড'
+                            ],
+                            correctAnswer: 2
+                        },
+                        {
+                            question: '4. প্রথম ফিফা বিশ্বকাপ কবে অনুষ্ঠিত হয় ?',
+                            type: 'mcq',
+                            options: [
+                                'ক. 1930 সালে',
+                                'খ. 1916 সালে',
+                                'গ. 1952 সালে',
+                                'ঘ. একটিও নয়'
+                            ],
+                            correctAnswer: 0
+                        },
+                        {
+                            question: '5. কোপা আমেরিকায় সর্বাধিক বার চ্যাম্পিয়ন হয়েছে কোন দল ?',
+                            type: 'mcq',
+                            options: [
+                                'ক. আর্জেন্টিনা',
+                                'খ. ব্রাজিল',
+                                'গ. উরুগুয়ে',
+                                'ঘ. ফ্রান্স'
+                            ],
+                            correctAnswer: 0
+                        }
+                    ]
+                },
+                {
+                    id: 2,
+                    set: 2,
+                    questions: [
+                        {
+                            question: '1. ফুটবলে হলুদ কার্ড কি নির্দেশ করে ?',
+                            type: 'mcq',
+                            options: [
+                                'ক. মাঠ থেকে বহিষ্কার',
+                                'খ. সতর্কবার্তা',
+                                'গ. জরিমানা',
+                                'ঘ. বিপদ সংকেত'
+                            ],
+                            correctAnswer: 1
+                        },
+                        {
+                            question: '2. ফুটবলের সর্বোচ্চ নিয়ন্ত্রক সংস্থা কোনটি ?',
+                            type: 'mcq',
+                            options: [
+                                'ক. BAFA',
+                                'খ. BFF',
+                                'গ. FIFA',
+                                'ঘ. ICB'
+                            ],
+                            correctAnswer: 2
+                        },
+                        {
+                            question: '3. ফিফা বিশ্বকাপ 2018 এ চ্যাম্পিয়ন হয়েছে কোন দল ?',
+                            type: 'mcq',
+                            options: [
+                                'ক. ফ্রান্স',
+                                'খ. আর্জেন্টিনা',
+                                'গ. জার্মানি',
+                                'ঘ. উরুগুয়ে'
+                            ],
+                            correctAnswer: 0
+                        },
+                        {
+                            question: '4. ফিফা বিশ্বকাপ 2022 এ 3য় স্থান লাভ করেছে কোন দল ?',
+                            type: 'mcq',
+                            options: [
+                                'ক. সৌদি আরব',
+                                'খ. আর্জেন্টিনা',
+                                'গ. ফ্রান্স',
+                                'ঘ. ক্রোয়েশিয়া'
+                            ],
+                            correctAnswer: 3
+                        },
+                        {
+                            question: '5. ফিফা বিশ্বকাপ 2026 এ কয়টি দল অংশগ্রহণ করবে ?',
+                            type: 'mcq',
+                            options: [
+                                'ক. 48 টি',
+                                'খ. 46 টি',
+                                'গ. 35 টি',
+                                'ঘ. 32 টি'
+                            ],
+                            correctAnswer: 0
+                        }
+                    ]
+                },
+                {
+                    id: 3,
+                    set: 3,
+                    questions: [
+                        {
+                            question: '1. ব্রাজিল কয়বার কোপা আমেরিকা জিতেছে ?',
+                            type: 'text',
+                            correctAnswer: '9 বার'
+                        },
+                        {
+                            question: '2. বুন্দেসলিগা কোন দেশের ফুটবল লিগ ?',
+                            type: 'text',
+                            correctAnswer: 'জার্মানি'
+                        },
+                        {
+                            question: '3. কোপা আমেরিকায় সর্বাধিক বার চ্যাম্পিয়ন হয়েছে কোন দল ?',
+                            type: 'text',
+                            correctAnswer: 'আর্জেন্টিনা'
+                        },
+                        {
+                            question: '4. ফুটবল মাঠের মাঝের বৃত্তকে কি বলে ?',
+                            type: 'text',
+                            correctAnswer: 'সেন্টার সার্কেল'
+                        },
+                        {
+                            question: '5. BFF এর পূর্ণরূপ কোনটি?',
+                            type: 'text',
+                            correctAnswer: 'Bangladesh Football Federation'
+                        }
+                    ]
+                },
+                {
+                    id: 4,
+                    set: 4,
+                    questions: [
+                        {
+                            question: '1. ফিফা বিশ্বকাপ 2022 এর সেরা খেলোয়াড় কে?',
+                            type: 'text',
+                            correctAnswer: 'লিওনেল মেসি'
+                        },
+                        {
+                            question: '2. ফিফা বিশ্বকাপ 2026 কোথায় অনুষ্ঠিত হবে?',
+                            type: 'text',
+                            correctAnswer: 'যুক্তরাষ্ট্র, কানাডা, মেক্সিকো'
+                        },
+                        {
+                            question: '3. প্রথম ফিফা বিশ্বকাপ কোথায় অনুষ্ঠিত হয়?',
+                            type: 'text',
+                            correctAnswer: 'উরুগুয়ে'
+                        },
+                        {
+                            question: '4. ফিফা বিশ্বকাপ কত বছর পর পর অনুষ্ঠিত হয়?',
+                            type: 'text',
+                            correctAnswer: '4 বছর পর পর'
+                        },
+                        {
+                            question: '5. ফিফা বিশ্বকাপে সর্বাধিকবার শিরোপা জিতেছে কোন দেশ?',
+                            type: 'text',
+                            correctAnswer: 'ব্রাজিল'
+                        }
+                    ]
+                },
+                {
+                    id: 5,
+                    set: 5,
+                    questions: [
+                        {
+                            question: '1. ফিফা বিশ্বকাপে আর্জেন্টিনা কতবার চ্যাম্পিয়ন হয়েছে?',
+                            type: 'text',
+                            correctAnswer: '4 বার'
+                        },
+                        {
+                            question: '2. ব্রাজিল সর্বশেষ বিশ্বকাপ জিতেছে কত সালে?',
+                            type: 'text',
+                            correctAnswer: '2002 সালে'
+                        },
+                        {
+                            question: '3. বিশ্বকাপে গোল্ডেন বুট পুরস্কারটি কাকে দেওয়া হয়?',
+                            type: 'text',
+                            correctAnswer: 'সর্বাধিক গোলদাতা'
+                        },
+                        {
+                            question: '4. ফিফা বিশ্বকাপে ফ্রান্স কতবার চ্যাম্পিয়ন হয়েছে?',
+                            type: 'text',
+                            correctAnswer: '2 বার'
+                        },
+                        {
+                            question: '5. ফুটবল ম্যাচে মাঠে কতজন রেফারি থাকে?',
+                            type: 'text',
+                            correctAnswer: '3 জন'
+                        }
+                    ]
+                }
+            ]
+        }
     }
 };
 
@@ -440,53 +444,65 @@ function closeSidebar() {
 function loadHomePage() {
     showPage('homePage');
     updateOverallProgress();
-    loadFootballUnits();
+    loadFootballSets();
 }
 
 function updateOverallProgress() {
-    const totalSets = 5;
-    let completedSets = 0;
+    const totalQuestions = QUIZ_DATA.sports.football.questions.reduce((sum, set) => sum + set.questions.length, 0);
+    let completedQuestions = 0;
     
     currentUser.quizProgress.sports.football.completed.forEach(status => {
-        if (status) completedSets++;
+        if (status) completedQuestions += 5;
     });
 
-    const percentage = Math.round((completedSets / totalSets) * 100);
+    const percentage = totalQuestions > 0 ? Math.round((completedQuestions / totalQuestions) * 100) : 0;
     document.getElementById('overallProgressFill').style.width = percentage + '%';
     document.getElementById('overallPercentage').textContent = convertToEnglishNumbers(percentage) + '%';
 
-    document.getElementById('footballProgressFill').style.width = percentage + '%';
-    document.getElementById('footballPercentage').textContent = convertToEnglishNumbers(percentage) + '%';
+    // Sports category stats
+    document.getElementById('sportsTotal').textContent = convertToEnglishNumbers(totalQuestions);
+    document.getElementById('sportsSets').textContent = convertToEnglishNumbers(5);
+    document.getElementById('sportsProgressFill').style.width = percentage + '%';
+    document.getElementById('sportsPercentage').textContent = convertToEnglishNumbers(percentage) + '%';
 }
 
-function loadFootballUnits() {
-    const container = document.getElementById('footballUnits');
+function loadFootballSets() {
+    const container = document.getElementById('footballSets');
     container.innerHTML = '';
 
     for (let i = 0; i < 5; i++) {
-        const unitData = QUIZ_DATA.sports.football[i];
+        const setData = QUIZ_DATA.sports.football.questions[i];
         const isCompleted = currentUser.quizProgress.sports.football.completed[i];
-        const completionPercent = isCompleted ? 100 : 0;
+        const isLocked = i > 0 && !currentUser.quizProgress.sports.football.completed[i - 1];
 
-        const unitCard = document.createElement('div');
-        unitCard.className = 'unit-card' + (isCompleted ? ' completed' : '');
-        unitCard.innerHTML = `
-            <h4>ফুটবল সেট 0${i + 1}</h4>
-            <div class="unit-info">
-                <span class="entry-fee">প্রবেশ ফি: 5 🪙</span>
-                <span class="unit-status">${convertToEnglishNumbers(completionPercent)}%</span>
+        const setCard = document.createElement('div');
+        setCard.className = 'set-card';
+        if (isLocked) setCard.classList.add('locked');
+        if (isCompleted) setCard.classList.add('completed');
+
+        let statusIcon = '→';
+        if (isCompleted) statusIcon = '✅';
+        if (isLocked) statusIcon = '🔒';
+
+        setCard.innerHTML = `
+            <div class="set-header">
+                <span class="set-name">SET ${convertToEnglishNumbers(i + 1)}</span>
+                <span class="set-status">${statusIcon}</span>
             </div>
-            <div class="unit-progress">
-                <div class="progress-bar">
-                    <div class="progress-fill" style="width: ${completionPercent}%"></div>
-                </div>
-            </div>
-            <button class="unit-button" onclick="startQuizSet(${i}, ${isCompleted})" ${currentUser.coins < 5 && !isCompleted ? 'disabled' : ''}>
+            <div class="set-fee">প্রবেশ ফি: 5 🪙</div>
+            <button class="btn btn-primary set-button" onclick="startQuizSet(${i}, ${isCompleted})" ${isLocked || (currentUser.coins < 5 && !isCompleted) ? 'disabled' : ''}>
                 ${isCompleted ? 'আবার খেলুন' : 'খেলুন'}
             </button>
         `;
-        container.appendChild(unitCard);
+        container.appendChild(setCard);
     }
+}
+
+// ===== Gift Box Modal =====
+function openGiftBoxModal() {
+    document.getElementById('giftCode').value = '';
+    document.getElementById('giftResult').style.display = 'none';
+    openModal('giftBoxModal');
 }
 
 // ===== Quiz Functions =====
@@ -501,7 +517,7 @@ function startQuizSet(setIndex, isPlayAgain = false) {
     isPlayAgainMode = isPlayAgain;
     currentQuiz = {
         setIndex: setIndex,
-        questions: QUIZ_DATA.sports.football[setIndex].questions,
+        questions: QUIZ_DATA.sports.football.questions[setIndex].questions,
         entryFee: isPlayAgain ? 0 : entryFee
     };
 
@@ -894,16 +910,6 @@ function logout() {
         switchPage('loginPage');
     }
 }
-
-// ===== Menu Item Click Handler (Close Sidebar) =====
-document.addEventListener('DOMContentLoaded', () => {
-    const menuItems = document.querySelectorAll('.menu-list a');
-    menuItems.forEach(item => {
-        item.addEventListener('click', () => {
-            closeSidebar();
-        });
-    });
-});
 
 // ===== Utility Functions =====
 document.addEventListener('click', (e) => {
